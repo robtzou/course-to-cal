@@ -16,9 +16,13 @@ const dayMap: Record<string, string> = {
 export async function POST(req: NextRequest) {
     const session = await auth();
 
-    if (!session || !session.accessToken) {
+    if (!session || !session.accessToken || (session as any).error) {
+        console.error("No session or access token found", { session });
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    console.log("Session found, attempting to add to calendar");
+    console.log("Token length:", session.accessToken?.length);
+    console.log("Token start:", session.accessToken?.substring(0, 5));
 
     try {
         const { courses, startDate, endDate } = await req.json();

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Upload, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useSession, signIn } from "next-auth/react";
+import Image from "next/image";
 import { ImageUpload } from "@/components/ImageUpload";
 import { DateRangePicker } from "@/components/DateRangePicker";
 import { CourseReview } from "@/components/CourseReview";
@@ -91,30 +92,42 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 overflow-hidden relative">
 
             {/* Hero Section */}
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex flex-col gap-8">
+            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex flex-col gap-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     className="text-center space-y-4"
                 >
-                    <div className="inline-block rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-xl mb-4">
+                    <div className="inline-block rounded-full bg-white/10 border border-white/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-xl mb-4">
                         ✨ AI-Powered Schedule Sync
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 pb-2">
-                        Course to Calendar
-                    </h1>
-                    <p className="text-muted-foreground max-w-[600px] mx-auto text-lg">
-                        Upload a screenshot of your course schedule and let our agent instantly sync it to your Google Calendar.
+                    <div className="flex justify-center mb-4">
+                        <Image
+                            src="/Banner1.png"
+                            alt="Course to Calendar Banner"
+                            width={800}
+                            height={250}
+                            priority
+                            className="w-full max-w-[800px] h-auto rounded-2xl"
+                        />
+
+                    </div>
+                    {/* <h1 className="text-4xl md:text-6xl max-w-[600px] mx-auto font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 pb-2">
+
+                    </h1> */}
+                    <p className="text-muted-foreground max-w-[600px] mx-auto text-lg rounded-full bg-white/20 border border-white/20">
+                        Upload a screenshot of your course schedule and instantly sync it to your Google Calendar.
                     </p>
                 </motion.div>
 
                 {/* Main Action Area */}
                 <motion.div
                     layout
-                    className="w-full max-w-4xl mt-12"
+                    className="w-full max-w-5xl mt-6"
                 >
-                    <div className="glass-card rounded-3xl p-8 md:p-12 min-h-[400px] border-white/10 relative overflow-hidden">
+
+                    <div className="glass-card rounded-3xl p-6 md:p-12 min-h-[250px] border-white/10 relative overflow-hidden">
                         <AnimatePresence mode="wait">
                             {step === 1 && (
                                 <motion.div
@@ -243,6 +256,17 @@ export default function Home() {
                     ))}
                 </motion.div>
             </div>
+
+            {/* Footer */}
+            <footer className="w-full max-w-5xl mt-20 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+                <p>© {new Date().getFullYear()} Course2Cal. All rights reserved.</p>
+                <div className="flex items-center gap-6">
+                    <p>Built by Robert Tzou</p>
+                    <a href="https://robtzou.github.io/" className="hover:text-white transition-colors">
+                        Contact
+                    </a>
+                </div>
+            </footer>
         </main>
     );
 }
