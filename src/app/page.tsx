@@ -259,7 +259,13 @@ export default function Home() {
 
             {/* Footer */}
             <footer className="w-full max-w-5xl mt-20 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-                <p>© {new Date().getFullYear()} Course2Cal. All rights reserved.</p>
+                <div className="flex flex-col md:flex-row gap-4 items-center">
+                    <p>© {new Date().getFullYear()} Course2Cal. All rights reserved.</p>
+                    <div className="flex gap-4 text-xs">
+                        <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
                 <div className="flex items-center gap-6">
                     <p>Built by Robert Tzou</p>
                     <a href="https://robtzou.github.io/" className="hover:text-white transition-colors">
