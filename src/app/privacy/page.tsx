@@ -1,6 +1,6 @@
 export default function PrivacyPolicy() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-start p-8 md:p-24 max-w-4xl mx-auto">
+        <main className="flex min-h-screen flex-col items-center justify-start px-8 pt-24 pb-8 md:p-24 max-w-4xl mx-auto">
             <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
             <div className="prose prose-invert w-full space-y-6 text-muted-foreground">
                 <p>Last updated: {new Date().toLocaleDateString()}</p>

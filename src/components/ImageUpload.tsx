@@ -77,8 +77,8 @@ export function ImageUpload({ onImageSelect }: ImageUploadProps) {
                             exit={{ opacity: 0 }}
                             className="flex flex-col items-center text-center space-y-4"
                         >
-                            <div className="h-16 w-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <Upload className="h-8 w-8 text-white/70" />
+                            <div className="h-16 w-16 rounded-2xl bg-blue-600/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
+                                <Upload className="h-8 w-8 text-white" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold mb-1">Upload Schedule</h3>
