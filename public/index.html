@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course to Calendar: Technical Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            -webkit-print-color-adjust: exact;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .step-connector {
+            position: absolute;
+            left: 2rem; /* Adjusted to align with icon center */
+            top: 3rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+
+        .last-step .step-connector {
+            display: none;
+        }
+
+        /* Print optimization to keep it on one page if possible */
+        @media print {
+            body { background-color: white; }
+            .shadow-lg { box-shadow: none; }
+            .container { max-width: 100%; padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden border border-slate-200">
+        
+        <!-- Header -->
+        <div class="bg-slate-900 text-white p-8 border-b border-slate-800">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <div class="text-indigo-400 font-bold tracking-wider text-xs uppercase mb-2">Technical Documentation</div>
+                    <h1 class="text-3xl font-bold mb-2">Course to Calendar</h1>
+                    <p class="text-slate-400 max-w-xl">
+                        An automated scheduling utility converting unstructured image data into structured calendar events via multimodal AI analysis.
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-3">
+                    <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-emerald-400 border border-slate-700">v1.2.0</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-blue-400 border border-slate-700">Powered by Gemini</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            
+            <!-- Left Column: User Guide -->
+            <div class="p-8 border-r border-slate-100 bg-white">
+                <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                    <i class="fa-solid fa-user-graduate text-indigo-600 mr-3"></i>
+                    End-User Workflow
+                </h2>
+                
+                <div class="relative space-y-8">
+                    
+                    <!-- Step 1 -->
+                    <div class="relative pl-16 z-10">
+                        <div class="step-connector"></div>
+                        <div class="absolute left-0 top-0 w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center border-2 border-indigo-100 text-indigo-600 font-bold">1</div>
+                        <h3 class="font-bold text-slate-700">Capture Schedule</h3>
+                        <p class="text-sm text-slate-600 mt-1">Take a screenshot of your weekly course grid from your university portal (Canvas, Blackboard, etc.). Ensure column headers (Days) and row headers (Times) are visible.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative pl-16 z-10">
+                        <div class="step-connector"></div>
+                        <div class="absolute left-0 top-0 w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center border-2 border-indigo-100 text-indigo-600 font-bold">2</div>
+                        <h3 class="font-bold text-slate-700">Upload Image</h3>
+                        <p class="text-sm text-slate-600 mt-1">Drag & drop the image file (.png, .jpg) into the application dashboard. The system will auto-validate the file type.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative pl-16 z-10">
+                        <div class="step-connector"></div>
+                        <div class="absolute left-0 top-0 w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center border-2 border-indigo-100 text-indigo-600 font-bold">3</div>
+                        <h3 class="font-bold text-slate-700">Verify Parsing</h3>
+                        <p class="text-sm text-slate-600 mt-1">A preview list appears. Review the class times and locations. Use the <i class="fa-solid fa-pen-to-square text-xs"></i> icon to correct any misread text before finalizing.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative pl-16 z-10 last-step">
+                        <div class="absolute left-0 top-0 w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center border-2 border-indigo-100 text-indigo-600 font-bold">4</div>
+                        <h3 class="font-bold text-slate-700">One-Click Sync</h3>
+                        <p class="text-sm text-slate-600 mt-1">Click "Sync to Google Calendar". The app requests OAuth permission and populates your calendar for the entire semester.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-100">
+                    <h4 class="text-sm font-bold text-yellow-800 mb-1"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Troubleshooting Tip</h4>
+                    <p class="text-xs text-yellow-700">If a class is missing, your screenshot might be cropped too tightly. Ensure the "Day of Week" headers are clearly visible in the image.</p>
+                </div>
+            </div>
+
+            <!-- Right Column: Technical Spec -->
+            <div class="p-8 bg-slate-50">
+                <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                    <i class="fa-solid fa-microchip text-rose-500 mr-3"></i>
+                    AI Integration Architecture
+                </h2>
+
+                <!-- Tech Block 1 -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">1. Input Processing</h3>
+                    <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                        <p class="text-sm text-slate-700 mb-2">The image is base64 encoded and passed to the backend. We utilize <strong>Google Gemini 1.5 Flash</strong> via the Vertex AI API for its high-speed multimodal capabilities.</p>
+                        <div class="bg-slate-900 rounded p-2 text-xs mono text-green-400 overflow-x-auto">
+                            POST /v1/models/gemini-1.5-flash:generateContent<br>
+                            { "inlineData": { "mimeType": "image/png", "data": "..." } }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Block 2 -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">2. Prompt Engineering Strategy</h3>
+                    <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                        <p class="text-sm text-slate-700 mb-2">We use a <strong>Structured Output</strong> prompt strategy. The system instruction strictly enforces a JSON schema, ensuring the LLM does not return conversational text.</p>
+                        <ul class="list-disc list-inside text-xs text-slate-600 space-y-1">
+                            <li><strong>Role:</strong> "You are a data extraction engine."</li>
+                            <li><strong>Task:</strong> Extract Course Code, Location, Start Time, End Time, Days (Mon-Fri).</li>
+                            <li><strong>Constraint:</strong> "Infer duration from grid height if time is not explicit."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tech Block 3 -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">3. Data Normalization</h3>
+                    <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                        <p class="text-sm text-slate-700 mb-2">Raw JSON from Gemini is parsed. Logic is applied to convert natural language days (e.g., "T/Th") into RRULE format for calendars.</p>
+                        <div class="flex items-center justify-between text-xs border-t border-slate-100 pt-2 mt-2">
+                            <span class="mono text-rose-600">"Tuesdays"</span>
+                            <i class="fa-solid fa-arrow-right text-slate-300"></i>
+                            <span class="mono text-blue-600">BYDAY=TU</span>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Tech Block 4 -->
+                 <div class="mb-2">
+                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">4. Privacy Guardrails</h3>
+                    <div class="bg-white p-4 rounded border border-slate-200 shadow-sm flex items-start">
+                        <i class="fa-solid fa-shield-halved text-emerald-500 mt-1 mr-3"></i>
+                        <div class="text-sm text-slate-700">
+                            <strong>Zero-Retention Policy:</strong> The image buffer is cleared from memory immediately after the API response is received. No user schedules are stored in a database.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 border-t border-slate-200 p-6 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+            <div>
+                &copy; 2025 Course to Calendar Inc. All rights reserved.
+            </div>
+            <div class="mt-2 md:mt-0">
+                <a href="#" class="hover:text-indigo-600 mr-4">API Status</a>
+                <a href="#" class="hover:text-indigo-600 mr-4">Privacy Policy</a>
+                <a href="#" class="hover:text-indigo-600">Developer Docs</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
