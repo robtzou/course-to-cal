@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, X, FileImage } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,28 @@ export function ImageUpload({ onImageSelect }: ImageUploadProps) {
             setPreview(objectUrl);
             onImageSelect(file);
         }
+    }, [onImageSelect]);
+
+    useEffect(() => {
+        const handlePaste = (e: ClipboardEvent) => {
+            const items = e.clipboardData?.items;
+            if (!items) return;
+
+            for (const item of items) {
+                if (item.type.indexOf('image') !== -1) {
+                    const file = item.getAsFile();
+                    if (file) {
+                        const objectUrl = URL.createObjectURL(file);
+                        setPreview(objectUrl);
+                        onImageSelect(file);
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('paste', handlePaste);
+        return () => window.removeEventListener('paste', handlePaste);
     }, [onImageSelect]);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -83,13 +105,27 @@ export function ImageUpload({ onImageSelect }: ImageUploadProps) {
                             <div>
                                 <h3 className="text-xl font-semibold mb-1">Upload Schedule</h3>
                                 <p className="text-sm text-muted-foreground">
-                                    Drag & drop or click to browse
+                                    Drag & drop, paste, or click to browse
                                 </p>
                             </div>
                             <div className="flex gap-2 text-xs text-muted-foreground/50">
                                 <span className="px-2 py-1 rounded-md bg-white/5">PNG</span>
                                 <span className="px-2 py-1 rounded-md bg-white/5">JPG</span>
                                 <span className="px-2 py-1 rounded-md bg-white/5">WEBP</span>
+                            </div>
+                            <div className="w-full max-w-xs relative group/input">
+                                <input
+                                    type="text"
+                                    placeholder="Or click here and paste image"
+                                    className="w-full px-4 py-2 rounded-xl bg-white/5 border border-gray/10 text-center text-sm focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all placeholder:text-muted-foreground/70"
+                                    onClick={(e) => e.stopPropagation()}
+                                    onPasteCapture={(e) => {
+                                        // We can handle specific logic here if needed, but the window listener will also catch it.
+                                        // However, stopping propagation might be safer if we want to isolate it, 
+                                        // but adhering to the "window handles everything" pattern is fine.
+                                        // We just need this input to NOT trigger the file picker (handled by stopPropagation on click).
+                                    }}
+                                />
                             </div>
                         </motion.div>
                     )}

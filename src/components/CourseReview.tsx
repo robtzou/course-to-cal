@@ -45,13 +45,31 @@ export function CourseReview({ courses, onCoursesChange }: CourseReviewProps) {
         setEditForm({ ...editForm, days });
     };
 
+    const addCourse = () => {
+        const newCourse: Course = {
+            id: `manual-${Date.now()}`,
+            code: "NEW",
+            name: "New Course",
+            startTime: "09:00",
+            endTime: "10:00",
+            days: [],
+            location: ""
+        };
+        onCoursesChange([...courses, newCourse]);
+        setEditingId(newCourse.id);
+        setEditForm(newCourse);
+    };
+
     const WEEKDAYS = ["Mo", "Tu", "We", "Th", "Fr"];
 
     return (
         <div className="w-full max-w-3xl mx-auto space-y-6">
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-semibold">Course Review: Add location and course name</h3>
-                <button className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                <button
+                    onClick={addCourse}
+                    className="text-sm text-primary hover:text-primary/80 flex items-center gap-1"
+                >
                     <Plus className="h-4 w-4" /> Add Course
                 </button>
             </div>

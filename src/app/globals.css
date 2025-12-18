@@ -80,4 +80,24 @@
   .glass-card {
     @apply bg-card/50 backdrop-blur-xl border border-white/10 shadow-xl;
   }
+
+  .animate-text-shine {
+    background: linear-gradient(
+      to right,
+      #ffffff 0%,
+      #93c5fd 50%,
+      #ffffff 100%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: text-shine 3s linear infinite;
+  }
+
+  @keyframes text-shine {
+    to {
+      background-position: 200% center;
+    }
+  }
 }
