@@ -460,7 +460,8 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg mb-1">Limited Access</h4>
-                                        <p className="text-muted-foreground">We request access to your Google Calendar <span className="text-white font-medium">solely to add your course events</span>. We do not read, modify, or delete your existing events.</p>
+
+                                        <p className="text-muted-foreground"><span className="text-black font-medium">We request access to your Google Calendar solely to add your course schedule</span>. We do not read, modify, or delete your existing events.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
@@ -469,7 +470,7 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg mb-1">No Permanent Storage</h4>
-                                        <p className="text-muted-foreground">Your uploaded schedule images are processed temporarily to extract course data and are <span className="text-white font-medium">not permanently stored</span> on our servers.</p>
+                                        <p className="text-muted-foreground">Your uploaded schedule images are processed temporarily to extract course data and are <span className="text-black font-medium">not permanently stored</span> on our servers.</p>
                                     </div>
                                 </div>
                             </div>
@@ -526,10 +527,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="flex items-center gap-6">
-                    <p>Built by Robert Tzou</p>
-                    <a href="https://robtzou.github.io/" className="hover:text-white transition-colors">
-                        Contact
-                    </a>
+                    <a href="https://www.linkedin.com/posts/robert-tzou_excited-to-announce-my-first-full-stack-application-activity-7407565770936766464-pEMQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD3pPoEB1jVxTC_E2gWdaBVwXqh4iN36fdA" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Built by Robert Tzou</a>
                 </div>
             </footer>
         </main >
